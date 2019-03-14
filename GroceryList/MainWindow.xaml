@@ -1,0 +1,20 @@
+﻿<Controls:MetroWindow x:Class="GroceryList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:GroceryList"
+        mc:Ignorable="d"
+        Title="Grocery List" Height="900" Width="1600">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Name="GroceryListButton" Content="Grocery List" Click="GroceryListButton_Click" />
+            <Button Name="RecipesButton" Content="Recipes" Click="RecipesButton_Click" />
+            <Button Name="IngredientsButton" Content="Ingredients" Click="IngredientsButton_Click" />
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Controls:TransitioningContentControl x:Name="MainContent" Transition="LeftReplace" />
+    </Grid>
+</Controls:MetroWindow>
