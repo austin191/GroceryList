@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryList.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace GroceryList.Views
     /// </summary>
     public partial class RecipeView : UserControl
     {
-        public RecipeView()
+        public RecipeView(RecipeVM viewModel)
         {
             InitializeComponent();
+            this.DataContext = viewModel;
         }
     }
 }

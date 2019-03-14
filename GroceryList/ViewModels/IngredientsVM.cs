@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GroceryList.Data;
+using GroceryList.ViewModels.Base;
 
 namespace GroceryList.ViewModels
 {
-    class IngredientsVM
+    public class IngredientsVM : ViewModel
     {
+        GroceryListRepo _groceryListRepo;
+        public IngredientsVM(GroceryListRepo groceryListRepo)
+        {
+            _groceryListRepo = groceryListRepo;
+        }
     }
 }

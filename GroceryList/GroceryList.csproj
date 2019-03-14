@@ -65,7 +65,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\Converter.cs" />
+    <Compile Include="Data\GroceryListRepo.cs" />
+    <Compile Include="Enums\IngredientTypes.cs" />
     <Compile Include="Enums\QuantityTypes.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeIngredientModel.cs" />
+    <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\GroceryListVM.cs" />
     <Compile Include="ViewModels\IngredientsVM.cs" />
     <Compile Include="ViewModels\RecipeVM.cs" />

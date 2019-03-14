@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace GroceryList.Enums
 {
-    public enum QuantityTypes
+    public enum IngredientTypes
     {
-        Can,
-        Bottle,
-        Cup,
-        Tbsp,
-        Tsp,
-        Oz
+        Singular,
+        Measured
     }
 }
