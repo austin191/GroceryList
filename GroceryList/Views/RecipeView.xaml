@@ -60,13 +60,23 @@
       </Grid> <!-- Left Side -->
 
       <Grid Grid.Row ="1" Grid.Column="2"> <!-- Right Side -->
-        <Grid.RowDefinitions> 
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
           <RowDefinition Height="auto" />
           <RowDefinition Height="*"/>
           <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        
-        
-      </Grid>
+
+        <Label Content="New Ingredient:" HorizontalAlignment="Center" FontSize="16"/>
+        <Grid Grid.Row ="1">
+          
+        </Grid>
+        <Label Grid.Row ="2" Content="New Ingredient:" HorizontalAlignment="Center" FontSize="16"/>
+        <Grid Grid.Row ="3">
+          
+        </Grid>
+      </Grid><!-- Right Side -->
     </Grid>
 </UserControl>
