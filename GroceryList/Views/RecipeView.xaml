@@ -9,6 +9,8 @@
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="5*"/>
+        <ColumnDefinition Width="5*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
@@ -17,8 +19,54 @@
         <RowDefinition Height="auto"/>
       </Grid.RowDefinitions>
 
-      <Label Grid.Row="0" Content="Recipies:" FontSize="16" Margin="10" FontWeight="Bold"/>
-      <Label Grid.Row="1" Grid.Column="1" Content="Recipe Ingredients:" FontSize="16" Margin="10"/>
-      
+      <Label Grid.Row="0" Grid.Column="1" Content="Recipies:" FontSize="20" Margin="10" FontWeight="Bold"/>
+      <Grid Grid.Row ="1" Grid.Column="1"> <!-- Left Side -->
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <Label Content="Name:" FontSize="14" HorizontalAlignment ="Right" Margin="10"/>
+          <TextBox Grid.Column="1" Text="{Binding NewRecipeText}" FontSize="16" Margin="10" MaxLength="50"/>
+          <Button Grid.Column="2" Content="Add" Command="{Binding AddCommand}" HorizontalAlignment="Center" Margin="10" Width="100px"/>
+        </Grid>
+        <Border Grid.Row="1" Margin="10" BorderBrush="Gray" BorderThickness="1">
+          <ScrollViewer>
+
+            <ListBox ItemsSource="{Binding Recipies, Mode=TwoWay}" SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
+              <ListBox.Resources>
+                <!-- Set SelectedItem Background here -->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Green"/>
+              </ListBox.Resources>
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Name="txtTitle" FontSize="12" HorizontalAlignment="Center" TextAlignment="Justify" Text="{Binding Name}" TextWrapping="Wrap" />
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+
+          </ScrollViewer>
+        </Border>
+        <Button Grid.Row="2" Content="Remove" Command="{Binding RemoveCommand}" HorizontalAlignment="Center" Margin="10" Width="100px"/>
+      </Grid> <!-- Left Side -->
+
+      <Grid Grid.Row ="1" Grid.Column="2"> <!-- Right Side -->
+        <Grid.RowDefinitions> 
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        
+      </Grid>
     </Grid>
 </UserControl>

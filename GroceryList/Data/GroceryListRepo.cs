@@ -65,11 +65,23 @@ namespace GroceryList.Data
             return new Ingredient();
         }
 
-        public void AddIngredient(Ingredient ingredient)
+        public void AddIngredient(Ingredient newIngredient)
         {
+            var currentIngredients = GetIngredientsList();
+            if (File.Exists(ingredientsFile))
+            {
+                File.Delete(ingredientsFile);
+                File.Create(ingredientsFile).Close();
+            }
+
+            currentIngredients.Add(newIngredient);
+            var sortedIngredients = currentIngredients.OrderBy(x => x.Name);
             using (StreamWriter writer = new StreamWriter(ingredientsFile, append: true))
             {
-                writer.WriteLine($"{ingredient.Name},{ingredient.Type.ToString()}");
+                foreach (var ingredient in sortedIngredients)
+                {
+                    writer.WriteLine($"{ingredient.Name},{ingredient.Type.ToString()}");
+                }
             }
         }
 

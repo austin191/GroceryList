@@ -9,6 +9,8 @@
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="5*"/>
+        <ColumnDefinition Width="5*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
@@ -17,8 +19,8 @@
         <RowDefinition Height="auto"/>
       </Grid.RowDefinitions>
 
-      <Label Grid.Row="0" Content="This week's recipies:" FontSize="16" Margin="10" FontWeight="Bold"/>
-      <Label Grid.Row="1" Grid.Column="1" Content="Grocery List:" FontSize="16" Margin="10"/>
+      <Label Grid.Row="0" Grid.Column="1" Content="This Weeks Recipies:" FontSize="20" Margin="10" FontWeight="Bold"/>
+      <Label Grid.Row="1" Grid.Column="2" Content="Grocery List:" FontSize="16" Margin="10"/>
       <!--<ComboBox Name="ProductComboBox" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Product}" Grid.Row="2" Grid.Column="1"
                 Height="25" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontSize="16" DisplayMemberPath="Name" >
         <i:Interaction.Triggers>

@@ -45,6 +45,7 @@ namespace GroceryList.ViewModels
                     Name = NewIngredientText,
                     Type = ingredientType
                 });
+                Refresh();
             }
         }
 
