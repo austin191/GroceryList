@@ -27,23 +27,23 @@ namespace GroceryList
 
         private void GroceryListButton_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Transition = TransitionType.RightReplace;
+            MainContent.Transition = TransitionType.Right;
             MainContent.Content = _groceryListView;
         }
 
         private void RecipesButton_Click(object sender, RoutedEventArgs e)
         {
             if(MainContent.Content.GetType() == typeof(GroceryListView))
-                MainContent.Transition = TransitionType.LeftReplace;
+                MainContent.Transition = TransitionType.Left;
             else
-                MainContent.Transition = TransitionType.RightReplace;
+                MainContent.Transition = TransitionType.Right;
 
             MainContent.Content = _recipeView;
         }
 
         private void IngredientsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Transition = TransitionType.LeftReplace;
+            MainContent.Transition = TransitionType.Left;
             MainContent.Content = _ingredientsView;
         }
     }

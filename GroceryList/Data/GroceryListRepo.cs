@@ -16,8 +16,8 @@ namespace GroceryList.Data
 
         public GroceryListRepo()
         {
-            if (!File.Exists(ingredientsFile)) File.Create(ingredientsFile);
-            if (!File.Exists(recipiesFile)) File.Create(recipiesFile);
+            if (!File.Exists(ingredientsFile)) File.Create(ingredientsFile).Close();
+            if (!File.Exists(recipiesFile)) File.Create(recipiesFile).Close();
         }
 
         //ingredients
@@ -67,7 +67,7 @@ namespace GroceryList.Data
 
         public void AddIngredient(Ingredient ingredient)
         {
-            using (StreamWriter writer = new StreamWriter(ingredientsFile))
+            using (StreamWriter writer = new StreamWriter(ingredientsFile, append: true))
             {
                 writer.WriteLine($"{ingredient.Name},{ingredient.Type.ToString()}");
             }
@@ -77,16 +77,18 @@ namespace GroceryList.Data
         {
             var currentIngredients = GetIngredientsList();
             if (File.Exists(ingredientsFile))
-                File.Delete(ingredientsFile);
-
-            using (StreamWriter writer = new StreamWriter(ingredientsFile))
             {
-                foreach (var ing in currentIngredients)
-                {
-                    if (ing.Name != name)
-                        AddIngredient(ing);
-                }
+                File.Delete(ingredientsFile);
+                File.Create(ingredientsFile).Close();
             }
+
+            foreach (var ing in currentIngredients)
+            {
+                if (ing.Name != name)
+                    AddIngredient(ing);
+            }
+
+            DeleteIngredientFromRecipe(name);
         }
 
         //recipies
@@ -168,7 +170,7 @@ namespace GroceryList.Data
 
         public void AddRecipe(Recipe recipe)
         {
-            using (StreamWriter writer = new StreamWriter(recipiesFile))
+            using (StreamWriter writer = new StreamWriter(recipiesFile, append: true))
             {
                 foreach (var rim in recipe.Ingredients)
                 {
@@ -181,13 +183,38 @@ namespace GroceryList.Data
         {
             var currentRecipies = GetRecipesList();
             if (File.Exists(recipiesFile))
+            {
                 File.Delete(recipiesFile);
+                File.Create(recipiesFile).Close();
+            }
 
             foreach (var rec in currentRecipies)
             {
                 if (rec.Name != name)
                     AddRecipe(rec);
             }            
+        }
+
+        public void DeleteIngredientFromRecipe(string name)
+        {
+            var currentRecipies = GetRecipesList();
+            if (File.Exists(recipiesFile))
+            {
+                File.Delete(recipiesFile);
+                File.Create(recipiesFile).Close();
+            }
+
+            using (StreamWriter writer = new StreamWriter(recipiesFile, append: true))
+            {
+                foreach (var recipe in currentRecipies)
+                {
+                    foreach (var rim in recipe.Ingredients)
+                    {
+                        if(rim.Ingredient.Name != name)
+                            writer.WriteLine($"{recipe.Name},{rim.Ingredient.Name},{rim.Quantity},{rim.QuantityType.ToString()}");
+                    }
+                }
+            }
         }
     }
 }

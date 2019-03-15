@@ -8,8 +8,6 @@ namespace GroceryList.Enums
 {
     public enum QuantityTypes
     {
-        Can,
-        Bottle,
         Cup,
         Tbsp,
         Tsp,

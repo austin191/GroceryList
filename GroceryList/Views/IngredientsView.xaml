@@ -3,12 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:GroceryList.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="5*"/>
+        <ColumnDefinition Width="5*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
@@ -16,5 +19,53 @@
         <RowDefinition Height="*"/>
         <RowDefinition Height="auto"/>
       </Grid.RowDefinitions>
+
+      <Label Grid.Row="0" Grid.Column="1" Content="Ingredients:" FontSize="20" Margin="10" FontWeight="Bold"/>
+      <Border Grid.Row="1" Grid.Column="1" Margin="10" BorderBrush="Gray" BorderThickness="1">
+        <ScrollViewer>
+          
+          <ListBox ItemsSource="{Binding Ingredients, Mode=TwoWay}" SelectedItem="{Binding SelectedIngredient, Mode=TwoWay}">
+            <ListBox.Resources>
+              <!-- Set SelectedItem Background here -->
+              <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Green"/>
+            </ListBox.Resources>
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                  <TextBlock Name="txtTitle" FontSize="12" HorizontalAlignment="Center" TextAlignment="Justify" Text="{Binding Name}" TextWrapping="Wrap" />
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          
+        </ScrollViewer>
+      </Border>
+      <Button Grid.Row="2" Grid.Column="1" Content="Remove" Command="{Binding RemoveCommand}" HorizontalAlignment="Center" Margin="10" Width="100px"/>
+      
+      <Grid Grid.Row="1" Grid.Column="2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="New Ingredient:" HorizontalAlignment="Center" FontSize="16"/>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Content="Name:" FontSize="14" HorizontalAlignment ="Right" Margin="10"/>
+          <TextBox Grid.Column="1" Text="{Binding NewIngredientText}" FontSize="16" Margin="10" MaxLength="50"/>
+        </Grid>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="10">
+          <RadioButton IsChecked="{Binding IsNewSingular}" GroupName="IngredientType" Margin="0,0,0,10" >Singular</RadioButton>
+          <RadioButton IsChecked="{Binding IsNewMeasured}" GroupName="IngredientType">Measured</RadioButton>
+        </StackPanel>
+        <Button Grid.Row="3" Content="Add" Command="{Binding AddCommand}" HorizontalAlignment="Center" Margin="10" Width="100px"/>
+      </Grid>     
+      
     </Grid>
 </UserControl>

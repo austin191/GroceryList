@@ -15,6 +15,6 @@
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid>
-        <Controls:TransitioningContentControl x:Name="MainContent" Transition="LeftReplace" />
+        <Controls:TransitioningContentControl x:Name="MainContent" Transition="Left" />
     </Grid>
 </Controls:MetroWindow>
